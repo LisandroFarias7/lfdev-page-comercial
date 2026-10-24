@@ -3,7 +3,9 @@
 Sitio de una sola página de **LF Dev**: tiendas online a medida para negocios de Venado Tuerto y la región.
 
 - `index.html` — todo el sitio (HTML + CSS + JS embebido, sin dependencias).
-- `assets/demo-tienda.jpg` — captura real de la tienda demo.
+- `assets/demo-tienda.jpg` — captura real del catálogo de la demo.
+- `assets/demo-producto.jpg` — ficha de producto con talle y stock.
+- `assets/demo-carrito.jpg` — carrito con el checkout.
 - `assets/og.jpg` — imagen para compartir el link (1200×630).
 - `brand/` — opciones de logo en SVG y una hoja de muestra (`brand/index.html`, con `noindex`).
 - `favicon.svg` — ícono del sitio (badge LF).
@@ -16,13 +18,13 @@ Antes de publicar cambios, revisar el bloque `CONFIG` al inicio de `index.html`:
 const CONFIG = {
   whatsapp: "5493462226572",
   email: "lisandro@lfdev.com.ar",
-  demo: "https://tienda-demo.onrender.com",  // ← URL real de la demo
+  demo: "https://demo-web-ooz8.onrender.com",
   ciudad: "Venado Tuerto"
 };
 ```
 
-> **Pendiente:** reemplazar `demo` por la URL real del servicio en Render. Todos los botones de demo
-> ("Entrar a la demo", "Abrir la tienda demo", el banner y "Ver la demo") toman ese valor.
+> Todos los botones de demo ("Entrar a la demo", "Abrir la tienda demo", las tres capturas
+> y "Ver la demo") toman el valor de `CONFIG.demo`. Si cambia la URL de Render, se cambia ahí.
 
 ## Precios
 
