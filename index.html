@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LF Dev — Tiendas online para negocios de Venado Tuerto</title>
-<meta name="description" content="Tiendas online a medida para negocios de Venado Tuerto y la región. Catálogo con stock real, talles y colores, pago con Mercado Pago y panel propio. Sin comisiones por venta. Desde USD 300.">
+<title>LF Dev — Sistemas a medida para negocios de Venado Tuerto</title>
+<meta name="description" content="Sistemas a medida para negocios: tienda online, control de stock y agenda de turnos. Uno solo o los tres integrados, con panel propio y sin comisiones por venta. Desde USD 300.">
 <meta name="theme-color" content="#0a0f0d">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LF Dev — Tiendas online que venden solas">
-<meta property="og:description" content="Catálogo, stock real y Mercado Pago en un solo sistema. Con panel propio y sin comisiones por venta. Desde USD 300.">
+<meta property="og:title" content="LF Dev — Sistemas que ordenan tu negocio">
+<meta property="og:description" content="Tienda online, stock y turnos en un solo sistema, hecho a medida. Panel propio, sin comisiones por venta. Desde USD 300.">
 <meta property="og:url" content="https://lfdev.com.ar">
 <meta property="og:image" content="https://lfdev.com.ar/assets/og.jpg">
 <meta property="og:locale" content="es_AR">
@@ -145,6 +146,11 @@
 
   .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   @media(max-width:900px){.grid-3{grid-template-columns:1fr}}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:1000px){.grid-4{grid-template-columns:1fr 1fr}}
+  @media(max-width:620px){.grid-4{grid-template-columns:1fr}}
+  .mod svg{width:26px;height:26px;fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-bottom:14px}
+  .mod h3{margin-bottom:8px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
   .card .num{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;color:var(--accent);margin-bottom:14px;display:block}
   .card h3{margin-bottom:10px}
@@ -202,6 +208,11 @@
   .foot a:hover{color:var(--text)}
 
   @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+  @media(max-width:480px){
+    .logo-txt span{display:none}
+    .logo svg{width:27px;height:25px}
+    header .btn-sm{padding:9px 14px;font-size:.82rem}
+  }
 </style>
 </head>
 <body>
@@ -210,15 +221,17 @@
   <div class="wrap nav">
     <a class="logo" href="#top" aria-label="LF Dev — inicio">
       <svg viewBox="104 106 328 294" aria-hidden="true">
-        <path d="M104 112h48v240h92v48H104z"/>
-        <path d="M272 196h48v204h-48z"/>
-        <path d="M272 196 432 106v48L272 244z"/>
-        <path d="M320 288h76v42h-76z"/>
+        <g fill="#eaf2ee">
+          <path d="M104 112h48v240h92v48H104z"/>
+          <path d="M272 196h48v204h-48z"/>
+          <path d="M320 288h76v42h-76z"/>
+        </g>
+        <path d="M272 196 432 106v48L272 244z" fill="var(--accent)"/>
       </svg>
-      <span class="logo-txt"><b>LF DEV</b><span>TIENDAS ONLINE</span></span>
+      <span class="logo-txt"><b>LF DEV</b><span>SISTEMAS A MEDIDA</span></span>
     </a>
     <nav class="nav-links">
-      <a href="#problemas">Qué resuelve</a>
+      <a href="#modulos">Módulos</a>
       <a href="#demo">Demo</a>
       <a href="#proceso">Cómo trabajo</a>
       <a href="#planes">Planes</a>
@@ -235,21 +248,21 @@
     <div class="wrap hero-grid">
       <div>
         <span class="badge"><span class="dot"></span> Venado Tuerto · Santa Fe · Trabajo en toda la región</span>
-        <h1>Tu tienda vende sola, a&nbsp;las 3 de la mañana.</h1>
+        <h1>Tu negocio, ordenado y vendiendo solo.</h1>
         <p class="lead">
-          Catálogo con stock real, talles y colores, y pago con Mercado Pago.
-          El pedido te llega ordenado al panel, sin que respondas un mensaje.
+          Tienda online, control de stock y agenda de turnos. Podés empezar por un módulo
+          y sumar el resto: el sistema se arma a medida de cómo trabaja tu negocio, no al revés.
         </p>
         <div class="cta-row">
-          <a class="btn btn-primary" data-demo href="#">Entrar a la demo →</a>
-          <a class="btn btn-ghost" data-wa="Hola Lisandro! Quiero hacerte una consulta por la tienda online." href="#">Hablar por WhatsApp</a>
+          <a class="btn btn-primary" data-demo href="#">Ver la demo →</a>
+          <a class="btn btn-ghost" data-wa="Hola Lisandro! Quiero ver cómo sería un sistema para mi negocio." href="#">Hablar por WhatsApp</a>
         </div>
-        <p class="hero-note">Lista en 3 semanas · 30 días de garantía · Sin comisiones por venta</p>
+        <p class="hero-note">Sistemas a medida · 2 a 4 semanas · 30 días de garantía</p>
       </div>
 
       <div class="browser">
         <div class="bar"><i></i><i></i><i></i><span>demo-web-ooz8.onrender.com</span></div>
-        <img class="shot" src="assets/demo-tienda.jpg" width="1600" height="1000" alt="Tienda online de ejemplo: catálogo de indumentaria para bebés y niños con filtros por categoría, buscador y precios">
+        <img class="shot" src="assets/demo-tienda.jpg" width="1600" height="1000" alt="Sistema de tienda online funcionando: catálogo de indumentaria con filtros por categoría, buscador y precios">
         <div class="chip">
           <div class="tick">✓</div>
           <div>
@@ -264,36 +277,69 @@
   <!-- STRIP -->
   <div class="strip">
     <div class="wrap strip-grid">
-      <div class="strip-item"><strong>3 semanas</strong><span>de la firma a la tienda online</span></div>
+      <div class="strip-item"><strong>2-4 semanas</strong><span>según cuántos módulos sumes</span></div>
       <div class="strip-item"><strong>0%</strong><span>de comisión por venta</span></div>
       <div class="strip-item"><strong>100%</strong><span>tuyo: código y datos</span></div>
-      <div class="strip-item"><strong>24/7</strong><span>vendiendo sin horario</span></div>
+      <div class="strip-item"><strong>24/7</strong><span>vendiendo y agendando</span></div>
     </div>
   </div>
+
+  <!-- MÓDULOS -->
+  <section id="modulos">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Qué construyo</span>
+        <h2>Cuatro piezas. Se combinan según tu negocio.</h2>
+        <p>No vendo una página suelta: armo el sistema que tu negocio necesita para vender, controlar y ordenar. Empezás por lo que más te duele y sumás el resto cuando hace falta.</p>
+      </div>
+      <div class="grid-4">
+        <article class="card mod">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L20 8H6"/><circle cx="9" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/></svg>
+          <h3>Tienda online</h3>
+          <p>Catálogo con fotos, variantes y stock real. Carrito, checkout y pago con Mercado Pago.</p>
+        </article>
+        <article class="card mod">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>
+          <h3>Control de stock</h3>
+          <p>Entradas, salidas y alertas de mínimo. Costos, márgenes y descuento automático con cada venta.</p>
+        </article>
+        <article class="card mod">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg>
+          <h3>Turnos y agenda</h3>
+          <p>Horarios por profesional, duración de cada servicio, bloqueos y confirmación automática. Sin dobles reservas.</p>
+        </article>
+        <article class="card mod">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+          <h3>A medida</h3>
+          <p>Presupuestos, clientes, suscripciones, comisiones, reportes e integraciones con lo que ya usás.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <!-- PROBLEMAS -->
   <section id="problemas">
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">El problema</span>
-        <h2>Si vendés por Instagram, ya sabés de qué hablo.</h2>
-        <p>Instagram sirve para mostrar. No cobra, no descuenta stock y no te avisa cuando alguien quiere comprar a las once de la noche.</p>
+        <h2>Si todo depende de una persona, el negocio no escala.</h2>
+        <p>No falta Instagram: falta que el stock, los turnos y las ventas vivan en el mismo lugar. Hoy alguien los une a mano, todos los días.</p>
       </div>
       <div class="grid-3">
         <article class="card pain">
           <span class="num">01</span>
-          <h3>Contestás precio y talle todo el día</h3>
-          <p>Veinte veces la misma pregunta, veinte veces la misma respuesta. Minutos que no facturás y clientas que se van si tardás en contestar.</p>
+          <h3>Todo depende de que alguien conteste</h3>
+          <p>Ventas, turnos y precios por DM. Si estás atendiendo no vendés; si estás vendiendo, no contestás. La venta se enfría en minutos.</p>
         </article>
         <article class="card pain">
           <span class="num">02</span>
-          <h3>Vendés lo que ya no tenés</h3>
-          <p>El stock vive en la cabeza o en una planilla. Dos personas compran la última unidad y una se entera tres días después, cuando ya pagó.</p>
+          <h3>El stock y la agenda viven en la cabeza</h3>
+          <p>Dos clientes, la última unidad. Dos turnos, el mismo horario. El error aparece cuando ya prometiste, y ahí no hay sistema que lo arregle.</p>
         </article>
         <article class="card pain">
           <span class="num">03</span>
-          <h3>El que escribe a las 23 no compra</h3>
-          <p>Preguntó, vio el precio, se durmió. A la mañana ya lo compró en otro lado. Todo lo que entra fuera de horario se enfría.</p>
+          <h3>La información está en cinco lugares</h3>
+          <p>Planilla, cuaderno, Instagram, WhatsApp y memoria. No sabés qué se vendió, qué falta ni cuánto ganaste el mes pasado.</p>
         </article>
       </div>
     </div>
@@ -304,8 +350,8 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">Demo real, no un video</span>
-        <h2>Entrá, elegí un talle y hacé un pedido.</h2>
-        <p>Es una tienda de indumentaria para bebés y niños, funcionando de verdad: 8 productos, 23 variantes de talle y color, y el panel de administración detrás.</p>
+        <h2>Hoy la demo es la tienda. Mañana, la de tu sistema.</h2>
+        <p>La tienda de indumentaria para bebés y niños está funcionando de verdad: 8 productos, 23 variantes y el panel detrás. Es la primera demo pública; las de turnos, stock y sistemas a medida las armo con el caso de cada cliente.</p>
       </div>
 
       <div class="gallery">
@@ -325,9 +371,9 @@
 
       <div class="cta-row" style="margin-top:30px">
         <a class="btn btn-primary" data-demo href="#">Abrir la tienda demo</a>
-        <a class="btn btn-ghost" data-wa="Hola Lisandro! Vi la demo y quiero ver el panel de administración." href="#">Ver el panel</a>
+        <a class="btn btn-ghost" data-wa="Hola Lisandro! Quiero ver una demo de un sistema (turnos, stock o a medida) para mi negocio." href="#">Pedir demo de mi caso</a>
       </div>
-      <p class="hero-note" style="max-width:74ch">Detrás hay un panel con pedidos, cobros, productos y stock, con permisos por usuario. El cobro de la demo es simulado: podés generar un pedido sin gastar nada.</p>
+      <p class="hero-note" style="max-width:74ch">¿Necesitás ver turnos o stock? En 10 minutos te muestro el sistema en una videollamada, o preparo una demo con tus datos. El cobro de la demo es simulado: podés hacer un pedido sin gastar nada.</p>
     </div>
   </section>
 
@@ -336,14 +382,14 @@
     <div class="wrap">
       <div class="sec-head">
         <span class="eyebrow">Cómo trabajo</span>
-        <h2>De la primera charla a la tienda online, en 3 pasos.</h2>
+        <h2>De la primera charla al sistema funcionando, en 3 pasos.</h2>
         <p>Sin reuniones eternas. Vos seguís con tu negocio y yo te aviso en cada etapa.</p>
       </div>
       <div class="steps">
         <div class="step">
           <div class="circle">1</div>
           <h3>Charla de 20 minutos</h3>
-          <p>Veo tu catálogo, cuántos productos manejás y cómo vendés hoy. Si no te conviene una tienda propia, te lo digo.</p>
+          <p>Veo cómo trabajás hoy: planillas, cuaderno, WhatsApp y qué te falta. Si no te conviene un sistema propio, te lo digo igual.</p>
         </div>
         <div class="step">
           <div class="circle">2</div>
@@ -352,8 +398,8 @@
         </div>
         <div class="step">
           <div class="circle">3</div>
-          <h3>Tienda online y capacitación</h3>
-          <p>En 3 semanas está en tu dominio, con pagos probados, tu equipo capacitado y un manual con capturas reales.</p>
+          <h3>Sistema online y capacitación</h3>
+          <p>En 2 a 4 semanas está en tu dominio, con pagos probados, tu equipo capacitado y un manual con capturas reales.</p>
         </div>
       </div>
     </div>
@@ -365,59 +411,60 @@
       <div class="sec-head">
         <span class="eyebrow">Inversión</span>
         <h2>Tres formas de arrancar.</h2>
-        <p>Pago en 3 tramos (40 / 40 / 20). El precio final depende de cuántos productos tengas y qué integraciones necesites.</p>
+        <p>Los tres planes son la misma base: cambia cuántos módulos integramos y qué tan lejos llega la personalización.</p>
       </div>
       <div class="plans">
 
         <article class="plan">
-          <h3>Esencial</h3>
+          <h3>Esencial · un módulo</h3>
           <div class="price">USD 300<span> · 3 tramos</span></div>
-          <p class="muted" style="font-size:.86rem">Para salir de los destacados de Instagram.</p>
+          <p class="muted" style="font-size:.86rem">Para ordenar lo que más te duele hoy.</p>
           <ul>
-            <li>Hasta 20 productos</li>
-            <li>Catálogo, carrito y checkout</li>
+            <li>Elegís uno: tienda, stock o turnos</li>
+            <li>Hasta 20 productos / 1 profesional</li>
+            <li>Panel de administración</li>
             <li>Pago con Mercado Pago</li>
-            <li>Panel de pedidos y productos</li>
             <li>2 semanas de entrega</li>
           </ul>
-          <a class="btn btn-ghost" data-wa="Hola Lisandro! Me interesa el plan Esencial de USD 300." href="#">Consultar</a>
+          <a class="btn btn-ghost" data-wa="Hola Lisandro! Me interesa el plan Esencial de USD 300 (un módulo)." href="#">Consultar</a>
         </article>
 
         <article class="plan featured">
           <span class="tag">EL MÁS ELEGIDO</span>
-          <h3>Completo</h3>
+          <h3>Completo · sistema integral</h3>
           <div class="price">USD 500<span> · 3 tramos</span></div>
-          <p class="muted" style="font-size:.86rem">El que resuelve el problema de verdad.</p>
+          <p class="muted" style="font-size:.86rem">Dos o tres módulos que se hablan entre sí.</p>
           <ul>
-            <li>Hasta 80 productos</li>
-            <li>Talles y colores con stock real</li>
-            <li>Filtros, buscador y orden</li>
-            <li>Panel con métricas y usuarios</li>
-            <li>Emails automáticos al cliente</li>
+            <li>2 o 3 módulos integrados</li>
+            <li>Hasta 80 productos / 5 profesionales</li>
+            <li>Variantes con stock real</li>
+            <li>Confirmaciones y recordatorios</li>
+            <li>Panel con métricas y 3 usuarios</li>
             <li>Capacitación grabada + manual</li>
             <li>3 semanas de entrega</li>
           </ul>
-          <a class="btn btn-primary" data-wa="Hola Lisandro! Me interesa el plan Completo de USD 500." href="#">Empezar</a>
+          <a class="btn btn-primary" data-wa="Hola Lisandro! Me interesa el plan Completo de USD 500 (sistema integral)." href="#">Empezar</a>
         </article>
 
         <article class="plan">
-          <h3>Premium</h3>
+          <h3>Premium · a medida</h3>
           <div class="price">USD 800<span> · 3 tramos</span></div>
-          <p class="muted" style="font-size:.86rem">Para el que ya vende y quiere escalar.</p>
+          <p class="muted" style="font-size:.86rem">Cuando el negocio tiene reglas propias.</p>
           <ul>
-            <li>Productos ilimitados</li>
-            <li>Cupones y envíos por zona</li>
-            <li>Multi-usuario con permisos</li>
-            <li>SEO, analítica y píxel de Meta</li>
-            <li>Integración con Instagram y WhatsApp</li>
-            <li>4 semanas de entrega</li>
+            <li>Módulos ilimitados</li>
+            <li>Multi-sucursal o multi-depósito</li>
+            <li>Roles, reportes y exportación</li>
+            <li>Integraciones: WhatsApp, AFIP, ERP</li>
+            <li>Migración de datos incluida</li>
+            <li>4 a 5 semanas de entrega</li>
           </ul>
-          <a class="btn btn-ghost" data-wa="Hola Lisandro! Me interesa el plan Premium de USD 800." href="#">Consultar</a>
+          <a class="btn btn-ghost" data-wa="Hola Lisandro! Me interesa el plan Premium de USD 800 (a medida)." href="#">Consultar</a>
         </article>
 
       </div>
       <p class="muted" style="margin-top:24px;font-size:.85rem">
-        Mantenimiento opcional desde USD 35/mes (hosting gestionado, backups y actualizaciones).
+        Cada negocio es distinto: si tu caso no entra en ningún plan, se cotiza aparte sin rehacer lo que ya está.
+        Pago en 3 tramos (40 / 40 / 20). Mantenimiento opcional desde USD&nbsp;35/mes.
         Hosting y dominio a tu nombre. Mercado Pago cobra su comisión por venta, no yo.
       </p>
     </div>
@@ -432,28 +479,36 @@
       </div>
       <div class="faq">
         <details open>
-          <summary>¿Por qué a medida y no Tiendanube?</summary>
-          <p>Si necesitás salir en 48 horas con un catálogo simple, Tiendanube es una buena opción y te lo voy a decir. A medida conviene cuando querés el código y los datos, cuando necesitás una lógica propia (stock por variante, circuitos internos, integraciones) o cuando la comisión por venta a la larga te sale más caro que la inversión inicial.</p>
+          <summary>¿Hacés solo tiendas online?</summary>
+          <p>No. Hago sistemas para negocios: tienda online, control de stock, turnos y agenda, y sistemas a medida (presupuestos, clientes, suscripciones). La tienda es el módulo más visible, pero el mismo sistema puede resolver el stock y la agenda del mismo negocio.</p>
         </details>
         <details>
-          <summary>¿Quién es dueño de la tienda?</summary>
+          <summary>¿Puedo empezar por un módulo y sumar después?</summary>
+          <p>Sí. El plan Esencial cubre un módulo y el Completo integra dos o tres. Si arrancás por uno, el sistema queda preparado para sumar el resto sin rehacer lo que ya está.</p>
+        </details>
+        <details>
+          <summary>¿Hay demo de turnos o de stock?</summary>
+          <p>Todavía no hay una demo pública: la única publicada es la de la tienda. Para turnos y stock te muestro el sistema en una videollamada de 10 minutos, o preparo una demo con los datos de tu negocio como parte del proyecto.</p>
+        </details>
+        <details>
+          <summary>¿Por qué a medida y no Tiendanube o Booksy?</summary>
+          <p>Son buenas opciones si necesitás salir en 48 horas con un catálogo o una agenda simple, y te lo voy a decir. A medida conviene cuando querés el código y los datos, cuando necesitás una lógica propia (stock por variante, turnos con profesionales, circuitos internos), o cuando la comisión por venta a la larga te sale más caro que la inversión inicial.</p>
+        </details>
+        <details>
+          <summary>¿Quién es dueño del sistema?</summary>
           <p>Vos, al pagar el total. Incluye el código fuente y las credenciales de todos los servicios. No quedás atado a mí ni a una plataforma que te sube el precio cuando quiere.</p>
         </details>
         <details>
-          <summary>¿Puedo seguir vendiendo por Instagram y WhatsApp?</summary>
-          <p>Sí, y te conviene. La tienda ordena el catálogo, los pagos y el stock; Instagram queda para mostrar y WhatsApp para conversar. Podés mandar el link del producto o el link de pago por chat.</p>
+          <summary>¿Quién carga los productos o los horarios?</summary>
+          <p>Vos o tu equipo, desde el panel, y lo hacemos juntos en la capacitación. Si preferís que los cargue yo, se cotiza aparte.</p>
         </details>
         <details>
-          <summary>¿Quién carga los productos?</summary>
-          <p>Vos o tu equipo, desde el panel, y lo hacemos juntos en la capacitación. Si preferís que los cargue yo, se cotiza aparte.</p>
+          <summary>¿Cuánto tarda?</summary>
+          <p>Dos semanas el Esencial (un módulo), tres el Completo y cuatro o cinco el Premium, contadas desde que tengo tus fotos, textos y accesos. Las demoras en los materiales corren el plazo en la misma medida.</p>
         </details>
         <details>
           <summary>¿Qué pasa si algo no funciona?</summary>
           <p>Tenés 30 días de garantía: cualquier cosa que no cumpla lo acordado la arreglo sin cargo, con respuesta en menos de 24 horas hábiles. Después podés seguir con un plan de mantenimiento desde USD 35/mes.</p>
-        </details>
-        <details>
-          <summary>¿Cuánto tarda?</summary>
-          <p>Dos semanas el plan Esencial, tres el Completo y cuatro el Premium, contadas desde que tengo tus fotos, textos y la cuenta de Mercado Pago. Las demoras en los materiales corren el plazo en la misma medida.</p>
         </details>
         <details>
           <summary>¿Trabajás fuera de Venado Tuerto?</summary>
@@ -468,8 +523,8 @@
     <div class="wrap">
       <div class="cta">
         <span class="eyebrow">Próximo paso</span>
-        <h2>Mirá tu catálogo funcionando.</h2>
-        <p>Contame cuántos productos tenés y te muestro en 10 minutos cómo se vería tu tienda. Si no te sirve, te lo digo yo primero.</p>
+        <h2>Mirá tu negocio funcionando.</h2>
+        <p>Contame qué te falta ordenar y te muestro en 10 minutos cómo se vería el sistema. Si no te sirve, te lo digo yo primero.</p>
         <div class="cta-row">
           <a class="btn btn-primary" data-wa="Hola Lisandro! Quiero coordinar una demo de 10 minutos." href="#">Hablar por WhatsApp</a>
           <a class="btn btn-ghost" data-demo href="#">Ver la demo</a>
@@ -496,7 +551,7 @@
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "name": "LF Dev",
-  "description": "Desarrollo de tiendas online a medida para negocios de Venado Tuerto y la región: catálogo con stock real, pagos con Mercado Pago y panel de administración propio.",
+  "description": "Desarrollo de sistemas a medida para negocios de Venado Tuerto y la región: tienda online, control de stock, turnos y agenda, con panel propio.",
   "areaServed": ["Venado Tuerto", "Santa Fe", "Argentina"],
   "founder": { "@type": "Person", "name": "Lisandro Farías" },
   "url": "https://lfdev.com.ar",
@@ -504,7 +559,8 @@
   "email": "lisandro@lfdev.com.ar",
   "telephone": "+5493462226572",
   "address": { "@type": "PostalAddress", "addressLocality": "Venado Tuerto", "addressRegion": "Santa Fe", "addressCountry": "AR" },
-  "priceRange": "USD 300 - USD 800"
+  "priceRange": "USD 300 - USD 800",
+  "serviceType": ["Desarrollo de software a medida", "Tienda online", "Sistema de control de stock", "Sistema de turnos y agenda"]
 }
 </script>
 
