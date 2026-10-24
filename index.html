@@ -24,16 +24,25 @@
 <script>
   const CONFIG = {
     whatsapp: "5493462226572",
-    email: "lisandro@lfdev.com.ar",
+    email: "lisandrofarias29@gmail.com",
     demo: "https://demo-web-ooz8.onrender.com",
-    ciudad: "Venado Tuerto"
+    ciudad: "Venado Tuerto",
+    // Cotización de respaldo (pesos por dólar). El sitio intenta actualizarla
+    // con dolarapi.com al cargar; si la API no responde, usa este valor.
+    usdArs: 1550
   };
   const wa = (txt) => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(txt)}`;
+  const setWaLink = (a) => {
+    a.href = wa(a.dataset.wa || "Hola Lisandro! Vi tu web y quiero ver la demo.");
+  };
+  const setDemoLink = (a) => {
+    a.href = CONFIG.demo;
+    a.target = "_blank";
+    a.rel = "noopener";
+  };
   document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("[data-wa]").forEach(a => {
-      a.href = wa(a.dataset.wa || "Hola Lisandro! Vi tu web y quiero ver la demo.");
-    });
-    document.querySelectorAll("[data-demo]").forEach(a => { a.href = CONFIG.demo; });
+    document.querySelectorAll("[data-wa]").forEach(setWaLink);
+    document.querySelectorAll("[data-demo]").forEach(setDemoLink);
   });
 </script>
 
@@ -78,6 +87,10 @@
   .logo-txt span{font-size:.54rem;letter-spacing:.19em;color:var(--muted);margin-top:4px;font-weight:600}
   .nav-links{display:flex;gap:26px;font-size:.92rem;color:var(--muted)}
   .nav-links a:hover{color:var(--text)}
+  .nav-right{display:flex;align-items:center;gap:10px}
+  .lang{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:8px 12px;font:inherit;font-size:.78rem;font-weight:700;letter-spacing:.08em;cursor:pointer;transition:.18s}
+  .lang:hover{color:var(--text);border-color:rgba(255,255,255,.25)}
+  .wa-short{display:none}
   @media(max-width:860px){.nav-links{display:none}}
 
   /* Buttons */
@@ -182,6 +195,7 @@
   .plan h3{font-size:1rem;color:var(--muted);font-weight:600;margin-bottom:8px}
   .price{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin-bottom:4px}
   .price span{font-size:.85rem;font-weight:500;color:var(--muted)}
+  .price .ars{display:block;font-size:.78rem;font-weight:600;letter-spacing:0;color:var(--muted);margin-top:3px}
   .plan ul{list-style:none;padding:0;margin:20px 0 24px;display:grid;gap:10px;font-size:.92rem;color:var(--muted)}
   .plan li{display:flex;gap:9px;align-items:flex-start}
   .plan li::before{content:"✓";color:var(--accent);font-weight:800;font-size:.85rem;margin-top:2px}
@@ -212,6 +226,8 @@
     .logo-txt span{display:none}
     .logo svg{width:27px;height:25px}
     header .btn-sm{padding:9px 14px;font-size:.82rem}
+    .wa-long{display:none}
+    .wa-short{display:inline}
   }
 </style>
 </head>
@@ -237,7 +253,10 @@
       <a href="#planes">Planes</a>
       <a href="#faq">Preguntas</a>
     </nav>
-    <a class="btn btn-primary btn-sm" data-wa="Hola Lisandro! Quiero ver la demo de la tienda." href="#">Hablar por WhatsApp</a>
+    <div class="nav-right">
+      <button class="lang" id="langBtn" type="button" aria-label="Switch to English">EN</button>
+      <a class="btn btn-primary btn-sm" data-wa="Hola Lisandro! Quiero ver la demo de la tienda." href="#"><span class="wa-long">Hablar por WhatsApp</span><span class="wa-short">WhatsApp</span></a>
+    </div>
   </div>
 </header>
 
@@ -417,7 +436,7 @@
 
         <article class="plan">
           <h3>Esencial · un módulo</h3>
-          <div class="price">USD 300<span> · 3 tramos</span></div>
+          <div class="price" data-usd="300">USD 300<span> · 3 tramos</span></div>
           <p class="muted" style="font-size:.86rem">Para ordenar lo que más te duele hoy.</p>
           <ul>
             <li>Elegís uno: tienda, stock o turnos</li>
@@ -432,7 +451,7 @@
         <article class="plan featured">
           <span class="tag">EL MÁS ELEGIDO</span>
           <h3>Completo · sistema integral</h3>
-          <div class="price">USD 500<span> · 3 tramos</span></div>
+          <div class="price" data-usd="500">USD 500<span> · 3 tramos</span></div>
           <p class="muted" style="font-size:.86rem">Dos o tres módulos que se hablan entre sí.</p>
           <ul>
             <li>2 o 3 módulos integrados</li>
@@ -448,7 +467,7 @@
 
         <article class="plan">
           <h3>Premium · a medida</h3>
-          <div class="price">USD 800<span> · 3 tramos</span></div>
+          <div class="price" data-usd="800">USD 800<span> · 3 tramos</span></div>
           <p class="muted" style="font-size:.86rem">Cuando el negocio tiene reglas propias.</p>
           <ul>
             <li>Módulos ilimitados</li>
@@ -466,6 +485,9 @@
         Cada negocio es distinto: si tu caso no entra en ningún plan, se cotiza aparte sin rehacer lo que ya está.
         Pago en 3 tramos (40 / 40 / 20). Mantenimiento opcional desde USD&nbsp;35/mes.
         Hosting y dominio a tu nombre. Mercado Pago cobra su comisión por venta, no yo.
+      </p>
+      <p class="muted" style="margin-top:10px;font-size:.82rem">
+        Los precios están en USD. El equivalente en pesos se calcula al dólar oficial del día; si pagás en pesos, se toma la cotización de la fecha de pago.
       </p>
     </div>
   </section>
@@ -539,7 +561,7 @@
   <div class="wrap foot">
     <div><strong style="color:var(--text)">LF Dev</strong> · Lisandro Farías · Venado Tuerto, Santa Fe</div>
     <div style="display:flex;gap:20px;flex-wrap:wrap">
-      <a href="mailto:lisandro@lfdev.com.ar">lisandro@lfdev.com.ar</a>
+      <a href="mailto:lisandrofarias29@gmail.com">lisandrofarias29@gmail.com</a>
       <a data-wa="Hola Lisandro! Te escribo desde la web." href="#">+54 9 3462 226572</a>
       <a href="#top">Volver arriba</a>
     </div>
@@ -556,12 +578,333 @@
   "founder": { "@type": "Person", "name": "Lisandro Farías" },
   "url": "https://lfdev.com.ar",
   "image": "https://lfdev.com.ar/assets/og.jpg",
-  "email": "lisandro@lfdev.com.ar",
+  "email": "lisandrofarias29@gmail.com",
   "telephone": "+5493462226572",
   "address": { "@type": "PostalAddress", "addressLocality": "Venado Tuerto", "addressRegion": "Santa Fe", "addressCountry": "AR" },
   "priceRange": "USD 300 - USD 800",
   "serviceType": ["Desarrollo de software a medida", "Tienda online", "Sistema de control de stock", "Sistema de turnos y agenda"]
 }
+</script>
+
+<script>
+/* ============================================================
+   Idioma (ES/EN) y precios en pesos
+   ============================================================ */
+(function () {
+  "use strict";
+
+  const EN = {
+    // Header
+    "SISTEMAS A MEDIDA": "CUSTOM SYSTEMS",
+    "Módulos": "Modules",
+    "Cómo trabajo": "How I work",
+    "Planes": "Plans",
+    "Preguntas": "FAQ",
+    "Hablar por WhatsApp": "Chat on WhatsApp",
+    "LF Dev — inicio": "LF Dev — home",
+
+    // Hero
+    "Venado Tuerto · Santa Fe · Trabajo en toda la región": "Venado Tuerto · Santa Fe · Working across the region",
+    "Tu negocio, ordenado y vendiendo solo.": "Your business, organized and selling on its own.",
+    "Tienda online, control de stock y agenda de turnos. Podés empezar por un módulo y sumar el resto: el sistema se arma a medida de cómo trabaja tu negocio, no al revés.": "Online store, inventory control and appointment scheduling. You can start with one module and add the rest: the system is built around how your business works, not the other way around.",
+    "Ver la demo →": "See the demo →",
+    "Sistemas a medida · 2 a 4 semanas · 30 días de garantía": "Custom systems · 2 to 4 weeks · 30-day warranty",
+    "Sistema de tienda online funcionando: catálogo de indumentaria con filtros por categoría, buscador y precios": "Working online store: clothing catalog with category filters, search and prices",
+    "Pedido #ORD-001000": "Order #ORD-001000",
+    "Pagado · stock descontado": "Paid · stock updated",
+
+    // Strip
+    "2-4 semanas": "2-4 weeks",
+    "según cuántos módulos sumes": "depending on how many modules you add",
+    "de comisión por venta": "commission per sale",
+    "tuyo: código y datos": "yours: code and data",
+    "vendiendo y agendando": "selling and taking bookings",
+
+    // Módulos
+    "Qué construyo": "What I build",
+    "Cuatro piezas. Se combinan según tu negocio.": "Four pieces. Combined to fit your business.",
+    "No vendo una página suelta: armo el sistema que tu negocio necesita para vender, controlar y ordenar. Empezás por lo que más te duele y sumás el resto cuando hace falta.": "I don't sell a standalone page: I build the system your business needs to sell, keep track and stay organized. Start with what hurts most and add the rest when you need it.",
+    "Tienda online": "Online store",
+    "Catálogo con fotos, variantes y stock real. Carrito, checkout y pago con Mercado Pago.": "Catalog with photos, variants and real stock. Cart, checkout and Mercado Pago payments.",
+    "Control de stock": "Inventory control",
+    "Entradas, salidas y alertas de mínimo. Costos, márgenes y descuento automático con cada venta.": "Stock in and out, low-stock alerts. Costs, margins and automatic deduction on every sale.",
+    "Turnos y agenda": "Appointments & scheduling",
+    "Horarios por profesional, duración de cada servicio, bloqueos y confirmación automática. Sin dobles reservas.": "Hours per staff member, service duration, time blocks and automatic confirmation. No double bookings.",
+    "A medida": "Custom",
+    "Presupuestos, clientes, suscripciones, comisiones, reportes e integraciones con lo que ya usás.": "Quotes, customers, subscriptions, commissions, reports and integrations with the tools you already use.",
+
+    // Problemas
+    "El problema": "The problem",
+    "Si todo depende de una persona, el negocio no escala.": "If everything depends on one person, the business doesn't scale.",
+    "No falta Instagram: falta que el stock, los turnos y las ventas vivan en el mismo lugar. Hoy alguien los une a mano, todos los días.": "Instagram isn't the issue: the issue is that stock, appointments and sales live in different places. Today someone puts them together by hand, every day.",
+    "Todo depende de que alguien conteste": "Everything waits for someone to reply",
+    "Ventas, turnos y precios por DM. Si estás atendiendo no vendés; si estás vendiendo, no contestás. La venta se enfría en minutos.": "Sales, appointments and prices over DM. If you're serving a customer you're not selling; if you're selling you're not replying. A sale goes cold in minutes.",
+    "El stock y la agenda viven en la cabeza": "Stock and schedule live in your head",
+    "Dos clientes, la última unidad. Dos turnos, el mismo horario. El error aparece cuando ya prometiste, y ahí no hay sistema que lo arregle.": "Two customers, the last unit. Two appointments, the same time slot. The mistake shows up after you promised, and no system fixes that.",
+    "La información está en cinco lugares": "The information lives in five places",
+    "Planilla, cuaderno, Instagram, WhatsApp y memoria. No sabés qué se vendió, qué falta ni cuánto ganaste el mes pasado.": "Spreadsheet, notebook, Instagram, WhatsApp and memory. You don't know what sold, what's missing or how much you made last month.",
+
+    // Demo
+    "Demo real, no un video": "A real demo, not a video",
+    "Hoy la demo es la tienda. Mañana, la de tu sistema.": "Today the demo is the store. Tomorrow, it's your system.",
+    "La tienda de indumentaria para bebés y niños está funcionando de verdad: 8 productos, 23 variantes y el panel detrás. Es la primera demo pública; las de turnos, stock y sistemas a medida las armo con el caso de cada cliente.": "The baby and kids' clothing store is actually running: 8 products, 23 variants and the admin panel behind it. It's the first public demo; appointment, inventory and custom system demos are built around each client's case.",
+    "Catálogo": "Catalog",
+    "Filtros por categoría, buscador y orden por precio.": "Category filters, search and sorting by price.",
+    "Talle y stock": "Size & stock",
+    "Lo agotado se ve agotado y no se puede comprar.": "Sold-out variants look sold out and can't be bought.",
+    "Carrito": "Cart",
+    "Subtotal, cantidades y checkout con Mercado Pago.": "Subtotal, quantities and Mercado Pago checkout.",
+    "Abrir la tienda demo": "Open the store demo",
+    "Pedir demo de mi caso": "Request a demo for my case",
+    "¿Necesitás ver turnos o stock? En 10 minutos te muestro el sistema en una videollamada, o preparo una demo con tus datos. El cobro de la demo es simulado: podés hacer un pedido sin gastar nada.": "Need to see appointments or inventory? In 10 minutes I'll show you the system on a video call, or I'll prepare a demo with your data. Payment in the demo is simulated: you can place an order without spending anything.",
+    "Catálogo de la tienda demo: filtros por categoría, buscador y productos con precio y disponibilidad": "Store demo catalog: category filters, search and products with price and availability",
+    "Ficha de producto con talle, color y stock por variante: el talle 20 figura sin stock": "Product page with size, color and stock per variant: size 20 shows as out of stock",
+    "Carrito lateral con el producto agregado, subtotal y botón Finalizar compra": "Side cart with the product added, subtotal and checkout button",
+
+    // Proceso
+    "De la primera charla al sistema funcionando, en 3 pasos.": "From the first call to a working system, in 3 steps.",
+    "Sin reuniones eternas. Vos seguís con tu negocio y yo te aviso en cada etapa.": "No endless meetings. You keep running your business and I keep you posted at every stage.",
+    "Charla de 20 minutos": "20-minute call",
+    "Veo cómo trabajás hoy: planillas, cuaderno, WhatsApp y qué te falta. Si no te conviene un sistema propio, te lo digo igual.": "I look at how you work today: spreadsheets, notebook, WhatsApp and what's missing. If custom software isn't right for you, I'll tell you anyway.",
+    "Propuesta clara en 48 h": "Clear proposal in 48 h",
+    "Alcance escrito, plazo y precio. Sin letra chica: lo que no está, no está, y se cotiza aparte.": "Written scope, timeline and price. No fine print: if it's not listed, it's not included and gets quoted separately.",
+    "Sistema online y capacitación": "System live and training",
+    "En 2 a 4 semanas está en tu dominio, con pagos probados, tu equipo capacitado y un manual con capturas reales.": "In 2 to 4 weeks it's live on your domain, with tested payments, your team trained and a manual with real screenshots.",
+
+    // Planes
+    "Inversión": "Investment",
+    "Tres formas de arrancar.": "Three ways to start.",
+    "Los tres planes son la misma base: cambia cuántos módulos integramos y qué tan lejos llega la personalización.": "All three plans share the same base: what changes is how many modules we integrate and how far the customization goes.",
+    "Esencial · un módulo": "Essential · one module",
+    "· 3 tramos": "· 3 payments",
+    "Para ordenar lo que más te duele hoy.": "To fix what hurts most today.",
+    "Elegís uno: tienda, stock o turnos": "Pick one: store, stock or appointments",
+    "Hasta 20 productos / 1 profesional": "Up to 20 products / 1 staff member",
+    "Panel de administración": "Admin panel",
+    "Pago con Mercado Pago": "Mercado Pago payments",
+    "2 semanas de entrega": "2-week delivery",
+    "Consultar": "Ask",
+    "EL MÁS ELEGIDO": "MOST CHOSEN",
+    "Completo · sistema integral": "Complete · full system",
+    "Dos o tres módulos que se hablan entre sí.": "Two or three modules that talk to each other.",
+    "2 o 3 módulos integrados": "2 or 3 integrated modules",
+    "Hasta 80 productos / 5 profesionales": "Up to 80 products / 5 staff members",
+    "Variantes con stock real": "Variants with real stock",
+    "Confirmaciones y recordatorios": "Confirmations and reminders",
+    "Panel con métricas y 3 usuarios": "Panel with metrics and 3 users",
+    "Capacitación grabada + manual": "Recorded training + manual",
+    "3 semanas de entrega": "3-week delivery",
+    "Empezar": "Get started",
+    "Premium · a medida": "Premium · custom",
+    "Cuando el negocio tiene reglas propias.": "When the business has its own rules.",
+    "Módulos ilimitados": "Unlimited modules",
+    "Multi-sucursal o multi-depósito": "Multi-branch or multi-warehouse",
+    "Roles, reportes y exportación": "Roles, reports and export",
+    "Integraciones: WhatsApp, AFIP, ERP": "Integrations: WhatsApp, AFIP, ERP",
+    "Migración de datos incluida": "Data migration included",
+    "4 a 5 semanas de entrega": "4 to 5-week delivery",
+    "Cada negocio es distinto: si tu caso no entra en ningún plan, se cotiza aparte sin rehacer lo que ya está. Pago en 3 tramos (40 / 40 / 20). Mantenimiento opcional desde USD 35/mes. Hosting y dominio a tu nombre. Mercado Pago cobra su comisión por venta, no yo.": "Every business is different: if your case doesn't fit any plan, it's quoted separately without redoing what's already built. Payment in 3 installments (40 / 40 / 20). Optional maintenance from USD 35/month. Hosting and domain stay in your name. Mercado Pago charges its own fee per sale, not me.",
+    "Los precios están en USD. El equivalente en pesos se calcula al dólar oficial del día; si pagás en pesos, se toma la cotización de la fecha de pago.": "Prices are in USD. The peso equivalent is calculated at the official exchange rate of the day; if you pay in pesos, the rate on the payment date applies.",
+
+    // FAQ
+    "Lo que me preguntan siempre.": "What people ask me most.",
+    "¿Hacés solo tiendas online?": "Do you only build online stores?",
+    "No. Hago sistemas para negocios: tienda online, control de stock, turnos y agenda, y sistemas a medida (presupuestos, clientes, suscripciones). La tienda es el módulo más visible, pero el mismo sistema puede resolver el stock y la agenda del mismo negocio.": "No. I build systems for businesses: online store, inventory control, appointments and scheduling, and custom systems (quotes, customers, subscriptions). The store is the most visible module, but the same system can handle the stock and the schedule of the same business.",
+    "¿Puedo empezar por un módulo y sumar después?": "Can I start with one module and add more later?",
+    "Sí. El plan Esencial cubre un módulo y el Completo integra dos o tres. Si arrancás por uno, el sistema queda preparado para sumar el resto sin rehacer lo que ya está.": "Yes. The Essential plan covers one module and the Complete plan integrates two or three. If you start with one, the system is ready to add the rest without redoing what's already there.",
+    "¿Hay demo de turnos o de stock?": "Is there a demo for appointments or inventory?",
+    "Todavía no hay una demo pública: la única publicada es la de la tienda. Para turnos y stock te muestro el sistema en una videollamada de 10 minutos, o preparo una demo con los datos de tu negocio como parte del proyecto.": "There's no public demo yet: the only one published is the store. For appointments and inventory I'll show you the system on a 10-minute video call, or prepare a demo with your business data as part of the project.",
+    "¿Por qué a medida y no Tiendanube o Booksy?": "Why custom instead of Tiendanube or Booksy?",
+    "Son buenas opciones si necesitás salir en 48 horas con un catálogo o una agenda simple, y te lo voy a decir. A medida conviene cuando querés el código y los datos, cuando necesitás una lógica propia (stock por variante, turnos con profesionales, circuitos internos), o cuando la comisión por venta a la larga te sale más caro que la inversión inicial.": "They're good options if you need to go live in 48 hours with a simple catalog or schedule, and I'll tell you so. Custom makes sense when you want the code and the data, when you need your own logic (stock per variant, appointments per staff member, internal workflows), or when the sales commission ends up costing more than the initial investment.",
+    "¿Quién es dueño del sistema?": "Who owns the system?",
+    "Vos, al pagar el total. Incluye el código fuente y las credenciales de todos los servicios. No quedás atado a mí ni a una plataforma que te sube el precio cuando quiere.": "You do, once it's fully paid. It includes the source code and the credentials for every service. You're not tied to me or to a platform that raises its price whenever it wants.",
+    "¿Quién carga los productos o los horarios?": "Who uploads the products or the schedule?",
+    "Vos o tu equipo, desde el panel, y lo hacemos juntos en la capacitación. Si preferís que los cargue yo, se cotiza aparte.": "You or your team, from the panel — we do it together during training. If you'd rather I do it, it's quoted separately.",
+    "¿Cuánto tarda?": "How long does it take?",
+    "Dos semanas el Esencial (un módulo), tres el Completo y cuatro o cinco el Premium, contadas desde que tengo tus fotos, textos y accesos. Las demoras en los materiales corren el plazo en la misma medida.": "Two weeks for Essential (one module), three for Complete and four or five for Premium, counted from when I have your photos, texts and accesses. Delays in the materials push the deadline by the same amount.",
+    "¿Qué pasa si algo no funciona?": "What if something doesn't work?",
+    "Tenés 30 días de garantía: cualquier cosa que no cumpla lo acordado la arreglo sin cargo, con respuesta en menos de 24 horas hábiles. Después podés seguir con un plan de mantenimiento desde USD 35/mes.": "You get a 30-day warranty: anything that doesn't match what we agreed on is fixed at no cost, with a reply in under 24 business hours. After that you can continue with a maintenance plan from USD 35/month.",
+    "¿Trabajás fuera de Venado Tuerto?": "Do you work outside Venado Tuerto?",
+    "Sí, todo el proceso puede ser remoto. Si estás en la zona, la reunión inicial y la capacitación las hacemos en persona.": "Yes, the whole process can be remote. If you're in the area, the first meeting and the training are in person.",
+
+    // CTA / footer
+    "Próximo paso": "Next step",
+    "Mirá tu negocio funcionando.": "See your business running.",
+    "Contame qué te falta ordenar y te muestro en 10 minutos cómo se vería el sistema. Si no te sirve, te lo digo yo primero.": "Tell me what needs sorting out and I'll show you in 10 minutes what the system would look like. If it's not a fit, I'll tell you first.",
+    "Ver la demo": "See the demo",
+    "Volver arriba": "Back to top",
+
+    // Mensajes de WhatsApp
+    "Hola Lisandro! Quiero ver la demo de la tienda.": "Hi Lisandro! I'd like to see the store demo.",
+    "Hola Lisandro! Quiero ver cómo sería un sistema para mi negocio.": "Hi Lisandro! I'd like to see what a system for my business would look like.",
+    "Hola Lisandro! Quiero ver una demo de un sistema (turnos, stock o a medida) para mi negocio.": "Hi Lisandro! I'd like a demo of a system (appointments, inventory or custom) for my business.",
+    "Hola Lisandro! Me interesa el plan Esencial de USD 300 (un módulo).": "Hi Lisandro! I'm interested in the Essential plan (USD 300, one module).",
+    "Hola Lisandro! Me interesa el plan Completo de USD 500 (sistema integral).": "Hi Lisandro! I'm interested in the Complete plan (USD 500, full system).",
+    "Hola Lisandro! Me interesa el plan Premium de USD 800 (a medida).": "Hi Lisandro! I'm interested in the Premium plan (USD 800, custom).",
+    "Hola Lisandro! Quiero coordinar una demo de 10 minutos.": "Hi Lisandro! I'd like to book a 10-minute demo.",
+    "Hola Lisandro! Te escribo desde la web.": "Hi Lisandro! I'm writing from your website."
+  };
+
+  const META = {
+    es: {
+      title: "LF Dev — Sistemas a medida para negocios de Venado Tuerto",
+      desc: "Sistemas a medida para negocios: tienda online, control de stock y agenda de turnos. Uno solo o los tres integrados, con panel propio y sin comisiones por venta. Desde USD 300."
+    },
+    en: {
+      title: "LF Dev — Custom software for businesses in Venado Tuerto",
+      desc: "Custom systems for businesses: online store, inventory control and appointment scheduling. One module or all three integrated, with your own admin panel and no sales commission. From USD 300."
+    }
+  };
+
+  const norm = (s) => s.replace(/\s+/g, " ").trim();
+  const TXT = new WeakMap();
+  const ATTR = new WeakMap();
+
+  function textNodes(root) {
+    const out = [];
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(n) {
+        const p = n.parentNode;
+        if (!p) return NodeFilter.FILTER_REJECT;
+        const tag = p.nodeName;
+        if (tag === "SCRIPT" || tag === "STYLE" || tag === "TEXTAREA") return NodeFilter.FILTER_REJECT;
+        if (p.closest && p.closest("svg")) return NodeFilter.FILTER_REJECT;
+        return n.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    let n;
+    while ((n = walker.nextNode())) out.push(n);
+    return out;
+  }
+
+  function applyLang(lang) {
+    const en = lang === "en";
+
+    textNodes(document.body).forEach((n) => {
+      if (!TXT.has(n)) TXT.set(n, n.nodeValue);
+      const orig = TXT.get(n);
+      const key = norm(orig);
+      if (!key) return;
+      if (en && EN[key]) {
+        const lead = (orig.match(/^\s*/) || [""])[0];
+        const trail = (orig.match(/\s*$/) || [""])[0];
+        n.nodeValue = lead + EN[key] + trail;
+      } else {
+        n.nodeValue = orig;
+      }
+    });
+
+    document.querySelectorAll("[alt]").forEach((el) => {
+      let store = ATTR.get(el);
+      if (!store) { store = {}; ATTR.set(el, store); }
+      if (!("alt" in store)) store.alt = el.getAttribute("alt");
+      const orig = store.alt;
+      el.setAttribute("alt", en ? (EN[norm(orig)] || orig) : orig);
+    });
+
+    document.querySelectorAll("[aria-label]").forEach((el) => {
+      let store = ATTR.get(el);
+      if (!store) { store = {}; ATTR.set(el, store); }
+      if (!("aria" in store)) store.aria = el.getAttribute("aria-label");
+      const orig = store.aria;
+      el.setAttribute("aria-label", en ? (EN[norm(orig)] || orig) : orig);
+    });
+
+    document.querySelectorAll("[data-wa]").forEach((a) => {
+      if (!a.dataset.waEs) a.dataset.waEs = a.dataset.wa;
+      const orig = a.dataset.waEs;
+      a.dataset.wa = en ? (EN[norm(orig)] || orig) : orig;
+      setWaLink(a);
+    });
+
+    document.querySelectorAll("[data-demo]").forEach(setDemoLink);
+  }
+
+  /* ---------- Precios en pesos ---------- */
+  const RATE = { value: CONFIG.usdArs };
+
+  function renderArs() {
+    const en = document.documentElement.lang === "en";
+    document.querySelectorAll(".price[data-usd]").forEach((p) => {
+      let el = p.querySelector(".ars");
+      if (!el) {
+        el = document.createElement("span");
+        el.className = "ars";
+        p.appendChild(el);
+      }
+      const value = Math.round(Number(p.dataset.usd) * RATE.value / 1000) * 1000;
+      el.textContent = (en ? "≈ ARS " : "≈ $ ") + value.toLocaleString(en ? "en-US" : "es-AR");
+      el.title = en ? "Official exchange rate of the day" : "Dólar oficial del día";
+    });
+  }
+
+  async function loadRate() {
+    try {
+      const res = await fetch("https://dolarapi.com/v1/dolares/oficial", { cache: "no-store" });
+      if (!res.ok) return;
+      const data = await res.json();
+      const value = Number(data.venta);
+      if (value >= 500 && value <= 20000) {
+        RATE.value = value;
+        renderArs();
+      }
+    } catch (err) {
+      /* usa CONFIG.usdArs */
+    }
+  }
+
+  /* ---------- Cambio de idioma ---------- */
+  let lang = "es";
+  try {
+    const saved = localStorage.getItem("lfdev-lang");
+    if (saved === "en" || saved === "es") lang = saved;
+  } catch (e) {}
+  const param = new URLSearchParams(location.search).get("lang");
+  if (param === "en" || param === "es") lang = param;
+  const fromParam = param === "en" || param === "es";
+
+  function setLang(next, save) {
+    lang = next === "en" ? "en" : "es";
+    const en = lang === "en";
+
+    document.documentElement.lang = en ? "en" : "es-AR";
+    applyLang(lang);
+
+    document.title = META[lang].title;
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute("content", META[lang].desc);
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) ogLocale.setAttribute("content", en ? "en_US" : "es_AR");
+
+    const btn = document.getElementById("langBtn");
+    if (btn) {
+      btn.textContent = en ? "ES" : "EN";
+      btn.setAttribute("aria-label", en ? "Cambiar a español" : "Switch to English");
+      btn.title = en ? "Cambiar a español" : "Switch to English";
+    }
+
+    renderArs();
+
+    if (save) {
+      try { localStorage.setItem("lfdev-lang", lang); } catch (e) {}
+      try {
+        history.replaceState(null, "", en ? "?lang=en" + location.hash : location.pathname + location.hash);
+      } catch (e) {}
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("langBtn");
+    if (btn) {
+      btn.addEventListener("click", () => setLang(lang === "en" ? "es" : "en", true));
+    }
+    if (fromParam) {
+      try { localStorage.setItem("lfdev-lang", lang); } catch (e) {}
+    }
+    setLang(lang, false);
+    loadRate();
+  });
+})();
 </script>
 
 </body>

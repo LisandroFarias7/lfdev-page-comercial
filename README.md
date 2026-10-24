@@ -18,7 +18,7 @@ Antes de publicar cambios, revisar el bloque `CONFIG` al inicio de `index.html`:
 ```js
 const CONFIG = {
   whatsapp: "5493462226572",
-  email: "lisandro@lfdev.com.ar",
+  email: "lisandrofarias29@gmail.com",
   demo: "https://demo-web-ooz8.onrender.com",
   ciudad: "Venado Tuerto"
 };
@@ -37,6 +37,17 @@ const CONFIG = {
 | Premium | USD 800 | sistema a medida |
 
 Pago en 3 tramos (40 / 40 / 20). Mantenimiento opcional desde USD 35/mes.
+
+## Idioma y precios
+
+- El sitio está en español por defecto y tiene un botón **EN/ES** en el header. La elección
+  se guarda en `localStorage` y también se puede forzar con `?lang=en` (útil para mandar
+  el link en inglés).
+- Los precios se muestran en USD y, debajo, el equivalente en pesos.
+- La cotización se toma de `https://dolarapi.com/v1/dolares/oficial` al cargar la página.
+  Si la API no responde, usa `CONFIG.usdArs` (hoy 1550). Actualizalo si cambia mucho.
+- Para traducir textos nuevos: agregá la frase en español como clave dentro del objeto
+  `EN` del último `<script>` de `index.html`, y su versión en inglés como valor.
 
 ## Logo
 
