@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" role="img" aria-label="LF Dev">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7ef7b6"/>
+      <stop offset="1" stop-color="#12a06f"/>
+    </linearGradient>
+    <symbol id="lfmark" viewBox="104 106 328 294">
+      <path d="M104 112h48v240h92v48H104z"/>
+      <path d="M272 196h48v204h-48z"/>
+      <path d="M272 196 432 106v48L272 244z"/>
+      <path d="M320 288h76v42h-76z"/>
+    </symbol>
+  </defs>
+  <use href="#lfmark" x="6" y="26" width="164" height="147" fill="url(#g)"/>
+  <text x="196" y="112" font-family="'Segoe UI',system-ui,-apple-system,sans-serif" font-size="58" font-weight="700" letter-spacing="9" fill="#ffffff">LF DEV</text>
+  <text x="200" y="146" font-family="'Segoe UI',system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" letter-spacing="6" fill="#7ef7b6">TIENDAS ONLINE</text>
+</svg>

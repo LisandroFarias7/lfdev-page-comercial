@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LF Dev — Opciones de logo</title>
+<style>
+  :root{ --ink:#0b1310; --card:#101a16; --line:rgba(255,255,255,.1); --muted:#93a69d; --accent:#5ef2a0; }
+  *{box-sizing:border-box}
+  body{margin:0;background:#070c0a;color:#eaf2ee;font-family:ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;line-height:1.55}
+  .wrap{max-width:1080px;margin:0 auto;padding:48px 24px 80px}
+  h1{font-size:1.9rem;letter-spacing:-.02em;margin:0 0 8px}
+  .sub{color:var(--muted);margin:0 0 40px;max-width:62ch}
+  .opt{border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:28px;background:var(--card)}
+  .head{display:flex;align-items:baseline;gap:14px;padding:20px 24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .head h2{font-size:1.05rem;margin:0}
+  .head span{font-size:.82rem;color:var(--muted)}
+  .tag{margin-left:auto;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(94,242,160,.35);padding:4px 9px;border-radius:999px}
+  .panes{display:grid;grid-template-columns:1fr 1fr}
+  @media(max-width:800px){.panes{grid-template-columns:1fr}}
+  .pane{padding:36px 28px;display:flex;align-items:center;justify-content:center;min-height:190px}
+  .pane.dark{background:#0a120f}
+  .pane.light{background:#f3f7f4}
+  .pane img{max-width:100%;height:auto;max-height:150px}
+  .pane.light img.on-dark{background:#0a120f;border-radius:14px;padding:20px 26px;max-height:190px}
+  .sizes{display:flex;gap:22px;align-items:center;padding:18px 24px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .sizes img{display:block}
+  .sizes .box{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.7rem;color:var(--muted)}
+  .note{border-left:3px solid var(--accent);background:#0e1a15;padding:14px 18px;border-radius:0 10px 10px 0;color:#c9d8d1;font-size:.9rem;margin:0 0 34px}
+  code{background:#16241e;padding:1px 5px;border-radius:4px;font-size:.85em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Opciones de logo</h1>
+  <p class="sub">Mismo monograma (L + F con la vela inclinada), cinco terminaciones. Todas las piezas son SVG: se escalan sin perder calidad y pesan menos de 2 KB.</p>
+
+  <p class="note"><b>Cómo elegir:</b> mirá cada opción en fondo oscuro y claro. La que se lea bien en los dos, a 32 px, es la que sirve. Después decime el número y la aplico al sitio, al favicon y a los documentos.</p>
+
+  <section class="opt">
+    <div class="head"><h2>A · Verde sólido</h2><span>Para fondo oscuro · el más directo</span><span class="tag">actual del sitio</span></div>
+    <div class="panes">
+      <div class="pane dark"><img src="logo-a-verde-oscuro.svg" alt="Opción A"></div>
+      <div class="pane light"><img class="on-dark" src="logo-a-verde-oscuro.svg" alt="Opción A sobre oscuro"></div>
+    </div>
+  </section>
+
+  <section class="opt">
+    <div class="head"><h2>B · Duotono</h2><span>Slate + verde · funciona en claro y oscuro</span></div>
+    <div class="panes">
+      <div class="pane light"><img src="logo-b-duotono-claro.svg" alt="Opción B"></div>
+      <div class="pane dark"><img src="logo-b-duotono-claro.svg" alt="Opción B sobre oscuro"></div>
+    </div>
+  </section>
+
+  <section class="opt">
+    <div class="head"><h2>C · Badge</h2><span>Icono de app · favicon, Instagram, WhatsApp</span><span class="tag">favicon</span></div>
+    <div class="panes">
+      <div class="pane dark"><img src="logo-c-badge.svg" alt="Opción C" style="max-height:120px"></div>
+      <div class="pane light"><img src="logo-c-badge.svg" alt="Opción C sobre claro" style="max-height:120px"></div>
+    </div>
+    <div class="sizes">
+      <div class="box"><img src="logo-c-badge.svg" width="64" height="64" alt=""><span>64</span></div>
+      <div class="box"><img src="logo-c-badge.svg" width="32" height="32" alt=""><span>32</span></div>
+      <div class="box"><img src="logo-c-badge.svg" width="24" height="24" alt=""><span>24</span></div>
+      <div class="box"><img src="logo-c-badge.svg" width="16" height="16" alt=""><span>16</span></div>
+    </div>
+  </section>
+
+  <section class="opt">
+    <div class="head"><h2>D · Degradado</h2><span>Verde con profundidad · más "producto digital"</span></div>
+    <div class="panes">
+      <div class="pane dark"><img src="logo-d-degradado.svg" alt="Opción D"></div>
+      <div class="pane light"><img class="on-dark" src="logo-d-degradado.svg" alt="Opción D sobre oscuro"></div>
+    </div>
+  </section>
+
+  <section class="opt">
+    <div class="head"><h2>E · Apilado</h2><span>El más parecido al logo que ya tenés</span></div>
+    <div class="panes">
+      <div class="pane dark"><img src="logo-e-apilado.svg" alt="Opción E" style="max-height:170px"></div>
+      <div class="pane light"><img class="on-dark" src="logo-e-apilado.svg" alt="Opción E sobre oscuro" style="max-height:200px"></div>
+    </div>
+  </section>
+
+  <p class="sub" style="margin-top:34px">Archivos: <code>brand/logo-a-verde-oscuro.svg</code>, <code>logo-b-duotono-claro.svg</code>, <code>logo-c-badge.svg</code>, <code>logo-d-degradado.svg</code>, <code>logo-e-apilado.svg</code> y <code>mark.svg</code> (monograma suelto, hereda el color con <code>currentColor</code>).</p>
+</div>
+</body>
+</html>
